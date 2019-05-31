@@ -32,7 +32,7 @@ class CardPin : Fragment() {
 
         viewModel.servicesClicked.observe(this, Observer { isClicked ->
             if (isClicked) {
-                this.findNavController().navigate(CardPinDirections.actionCardPinToOperationsFragment())
+                this.findNavController().navigate(CardPinDirections.actionCardPinToOperationsFragment(atmCardReceived))
                 viewModel.onServicesClickedFinished()
             }
         })
@@ -42,21 +42,30 @@ class CardPin : Fragment() {
             if (getPassword) {
                 viewModel.userPin = binding.cardPinEt.text.toString()
                 viewModel.pinCollectedCompleted()
+                viewModel.showServicesFragment()
             }
         })
 
         viewModel.canceledClicked.observe(this, Observer { isClicked ->
             if (isClicked) {
-                //TODO: Fix the cancel logic to pop the backStack
                 this.findNavController().navigate(CardPinDirections.actionCardPinToCardFragment())
                 viewModel.onCanceledClicked()
             }
         })
 
-        viewModel.showToast.observe(this, Observer { showToast ->
-            Toast.makeText(activity, "Wrong Pin Entered", Toast.LENGTH_SHORT).show()
-            viewModel.showToastCompleted()
+        viewModel.showWrongPinToast.observe(this, Observer { showToast ->
+            if (showToast) {
+                Toast.makeText(activity, "Wrong Pin entered", Toast.LENGTH_SHORT).show()
+                viewModel.showToastCompleted()
+            }
         })
+        viewModel.showNoPinEnteredToast.observe(this, Observer { showToast ->
+            if (showToast) {
+                Toast.makeText(activity, "No Pin entered", Toast.LENGTH_SHORT).show()
+                viewModel.showNoPinEnteredToastShowed()
+            }
+        })
+
         return binding.root
     }
 }

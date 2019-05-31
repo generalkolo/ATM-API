@@ -3,10 +3,11 @@ package com.semanienterprise.atm.operations.account_selection
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.semanienterprise.atm.network.AtmCard
 import com.semanienterprise.atm.operations.operation_selector.OperationsFragment.Companion.BALANCE_ENQUIRY
 import com.semanienterprise.atm.operations.operation_selector.OperationsFragment.Companion.WITHDRAWAL
 
-class AccountSelectionViewModel(val selection: String) : ViewModel() {
+class AccountSelectionViewModel(val selection: String, val atmCard: AtmCard) : ViewModel() {
 
     private val _navigateToCardFragment = MutableLiveData<Boolean>()
     val navigateToCardFragment: LiveData<Boolean>

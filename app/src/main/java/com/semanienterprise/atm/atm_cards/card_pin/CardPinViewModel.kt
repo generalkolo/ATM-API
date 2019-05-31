@@ -8,6 +8,10 @@ import com.semanienterprise.atm.network.AtmCard
 class CardPinViewModel(private val atmCard: AtmCard) : ViewModel() {
     var userPin: String? = null
 
+    private val _displayedUserPin = MutableLiveData<String>()
+    val displayedUserPin: LiveData<String>
+        get() = _displayedUserPin
+
     private val _servicesClicked = MutableLiveData<Boolean>()
     val servicesClicked: LiveData<Boolean>
         get() = _servicesClicked
@@ -16,28 +20,42 @@ class CardPinViewModel(private val atmCard: AtmCard) : ViewModel() {
     val canceledClicked: LiveData<Boolean>
         get() = _canceledClicked
 
-    private val _showToast = MutableLiveData<Boolean>()
-    val showToast: LiveData<Boolean>
-        get() = _showToast
+    private val _showWrongPinToast = MutableLiveData<Boolean>()
+    val showWrongPinToast: LiveData<Boolean>
+        get() = _showWrongPinToast
+
+    val _showNoPinEnteredToast = MutableLiveData<Boolean>()
+    val showNoPinEnteredToast: LiveData<Boolean>
+        get() = _showNoPinEnteredToast
 
     private val _getUserPin = MutableLiveData<Boolean>()
     val getUserPin: LiveData<Boolean>
         get() = _getUserPin
 
     fun showToastCompleted() {
-        _showToast.value = false
+        _showWrongPinToast.value = false
     }
 
     fun pinCollectedCompleted() {
         _getUserPin.value = false
     }
 
-    fun showServicesFragment() {
+    fun getUserPassword() {
         _getUserPin.value = true
-        if (userPin!! == atmCard.pin.toString()) {
+    }
+
+    fun showServicesFragment() {
+        if (null == userPin || userPin?.length == 0) {
+            _showNoPinEnteredToast.value = true
+        } else if (userPin!! != atmCard.pin.toString()) {
+            _showWrongPinToast.value = true
+        } else if (userPin!! == atmCard.pin.toString()) {
             _servicesClicked.value = true
-        } else
-            _showToast.value = true
+        }
+    }
+
+    fun showNoPinEnteredToastShowed() {
+        _showNoPinEnteredToast.value = false
     }
 
     fun onServicesClickedFinished() {

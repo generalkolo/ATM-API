@@ -25,9 +25,10 @@ class AccountSelectionFragment : Fragment() {
 
         // receive sent argument
         val userSelection = AccountSelectionFragmentArgs.fromBundle(arguments!!).selectionType
+        val selectedAtm = AccountSelectionFragmentArgs.fromBundle(arguments!!).atmCard
 
         //get the viewModel through viewModelFactory
-        val viewModelFactory = AccountSelectViewModelFactory(userSelection)
+        val viewModelFactory = AccountSelectViewModelFactory(userSelection, selectedAtm)
         val viewModel = ViewModelProviders.of(this, viewModelFactory).get(AccountSelectionViewModel::class.java)
 
         binding.lifecycleOwner = this

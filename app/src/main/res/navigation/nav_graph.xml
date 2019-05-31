@@ -44,6 +44,9 @@
             android:id="@+id/action_operationsFragment_to_cardFragment"
             app:destination="@id/cardFragment"
             app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
     </fragment>
     <fragment
         android:id="@+id/accountSelectionFragment"
@@ -65,6 +68,9 @@
             android:id="@+id/action_accountSelectionFragment_to_cardFragment"
             app:destination="@id/cardFragment"
             app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
     </fragment>
     <fragment
         android:id="@+id/depositAmountFragment"
@@ -88,7 +94,7 @@
         android:id="@+id/otherAmountFragment"
         android:name="com.semanienterprise.atm.operations.debit_others.OtherAmountFragment"
         android:label="fragment_other_amount"
-        tools:layout="@layout/fragment_other_amount" >
+        tools:layout="@layout/fragment_other_amount">
         <action
             android:id="@+id/action_otherAmountFragment_to_cardFragment"
             app:destination="@id/cardFragment"
@@ -102,7 +108,7 @@
         android:id="@+id/receiptFragment"
         android:name="com.semanienterprise.atm.receipt.ReceiptFragment"
         android:label="fragment_receipt"
-        tools:layout="@layout/fragment_receipt" >
+        tools:layout="@layout/fragment_receipt">
         <argument
             android:name="debitAmount"
             app:argType="string" />

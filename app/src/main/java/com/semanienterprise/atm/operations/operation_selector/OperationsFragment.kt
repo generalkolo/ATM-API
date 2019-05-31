@@ -52,8 +52,8 @@ class OperationsFragment : Fragment() {
         //navigate to account selection for withdrawal
         viewModel.navigateToAccountSelection.observe(this, Observer {
             if (it) {
-                this.findNavController()
-                    .navigate(OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(WITHDRAWAL))
+//                this.findNavController()
+//                    .navigate(OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(WITHDRAWAL))
                 viewModel.navigateToAccountSelectionComplete()
             }
         })
@@ -61,12 +61,12 @@ class OperationsFragment : Fragment() {
         //navigate to the account select for balance enquiry
         viewModel.navigateToBalanceFragment.observe(this, Observer {
             if (it) {
-                this.findNavController()
-                    .navigate(
-                        OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(
-                            BALANCE_ENQUIRY
-                        )
-                    )
+//                this.findNavController()
+//                    .navigate(
+//                        OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(
+//                            BALANCE_ENQUIRY
+//                        )
+//                    )
                 viewModel.navigateToBalanceFragmentComplete()
             }
         })
