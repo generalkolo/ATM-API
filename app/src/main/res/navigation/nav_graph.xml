@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/cardFragment">
+
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.semanienterprise.atm.atm_cards.cards.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card">
+        <action
+            android:id="@+id/action_cardFragment_to_cardPin"
+            app:destination="@id/cardPin" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardPin"
+        android:name="com.semanienterprise.atm.atm_cards.card_pin.CardPin"
+        android:label="fragment_card_pin"
+        tools:layout="@layout/fragment_card_pin">
+        <action
+            android:id="@+id/action_cardPin_to_operationsFragment"
+            app:destination="@id/operationsFragment"
+            app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
+        <action
+            android:id="@+id/action_cardPin_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/operationsFragment"
+        android:name="com.semanienterprise.atm.operations.operation_selector.OperationsFragment"
+        android:label="fragment_operations"
+        tools:layout="@layout/fragment_operations">
+        <action
+            android:id="@+id/action_operationsFragment_to_accountSelectionFragment"
+            app:destination="@id/accountSelectionFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_operationsFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountSelectionFragment"
+        android:name="com.semanienterprise.atm.operations.account_selection.AccountSelectionFragment"
+        android:label="fragment_account_selection"
+        tools:layout="@layout/fragment_account_selection">
+        <action
+            android:id="@+id/action_accountSelectionFragment_to_depositAmountFragment"
+            app:destination="@id/depositAmountFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_accountSelectionFragment_to_balanceFragment"
+            app:destination="@id/balanceFragment"
+            app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="selection_type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_accountSelectionFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/depositAmountFragment"
+        android:name="com.semanienterprise.atm.operations.debit_amount.WithdrawalAmountFragment"
+        android:label="fragment_deposit_amount"
+        tools:layout="@layout/fragment_deposit_amount">
+        <action
+            android:id="@+id/action_depositAmountFragment_to_otherAmountFragment"
+            app:destination="@id/otherAmountFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_depositAmountFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_depositAmountFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otherAmountFragment"
+        android:name="com.semanienterprise.atm.operations.debit_others.OtherAmountFragment"
+        android:label="fragment_other_amount"
+        tools:layout="@layout/fragment_other_amount" >
+        <action
+            android:id="@+id/action_otherAmountFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_otherAmountFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment"
+            app:popUpTo="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="com.semanienterprise.atm.receipt.ReceiptFragment"
+        android:label="fragment_receipt"
+        tools:layout="@layout/fragment_receipt" >
+        <argument
+            android:name="debitAmount"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_receiptFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_receiptFragment_to_cardPin"
+            app:destination="@id/cardPin"
+            app:popUpTo="@id/cardPin" />
+    </fragment>
+    <fragment
+        android:id="@+id/balanceFragment"
+        android:name="com.semanienterprise.atm.balance.BalanceFragment"
+        android:label="fragment_balance"
+        tools:layout="@layout/fragment_balance">
+        <action
+            android:id="@+id/action_balanceFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_balanceFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:popUpTo="@id/cardFragment" />
+        <action
+            android:id="@+id/action_balanceFragment_to_cardPin"
+            app:destination="@id/cardPin"
+            app:popUpTo="@id/cardPin" />
+    </fragment>
+</navigation>

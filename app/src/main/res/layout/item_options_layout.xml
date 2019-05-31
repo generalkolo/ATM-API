@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:elevation="3dp">
+
+    <Button
+        style="@style/button_text_style"
+        android:backgroundTint="@color/colorPrimary"
+        android:id="@+id/default_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Text Holder"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+</RelativeLayout>

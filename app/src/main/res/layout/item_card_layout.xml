@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="atmCard"
+            type="com.semanienterprise.atm.network.AtmCard" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.vinaygaba.creditcardview.CreditCardView
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/cardbackground_world"
+            app:cardName="@{atmCard.cardName}"
+            app:cardNameTextColor="@android:color/white"
+            app:cardNumber="@{atmCard.cardNumber}"
+            app:cardNumberFormat="masked_all_but_last_four"
+            app:cardNumberTextColor="@android:color/white"
+            app:expiryDate="@{atmCard.expiryDate}"
+            app:expiryDateTextColor="@android:color/white"
+            app:hintTextColor="@android:color/white"
+            app:putChip="true"
+            app:type="visa"
+            app:validTillTextColor="@android:color/white" />
+    </RelativeLayout>
+</layout>

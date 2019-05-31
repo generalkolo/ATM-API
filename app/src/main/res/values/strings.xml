@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ATM</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_withdrawal_amount_text">Please Select Debit Amount</string>
+    <string name="amount_hint">Amount</string>
+    <string name="card_pin_hint">Card Pin</string>
+    <string name="please_enter_card_pin_text">Please enter Card Pin</string>
+    <string name="account_balance_text">Account Balance</string>
+    <string name="enter_text">Enter</string>
+    <string name="please_select_your_desired_operation_text">Please select your desired operation</string>
+    <string name="cash_withdrawal_btn_text">Cash Withdrawal</string>
+    <string name="balance_enquiry_btn_text">Balance Enquiry</string>
+    <string name="please_insert_your_card_text">Please insert your card</string>
+    <string name="current_text">Current</string>
+    <string name="savings_text">Savings</string>
+    <string name="please_select_the_associated_account_text">Please select the associated account</string>
+    <string name="five_hundred_text">N500.00</string>
+    <string name="one_thousand_text">N1,000.00</string>
+    <string name="two_thousand_text">N2,000.00</string>
+    <string name="three_thousand_text">N3,000.00</string>
+    <string name="five_thousand_text">N5,000.00</string>
+    <string name="others_text">Others</string>
+    <string name="enter_debit_amount_text">Enter Debit Amount</string>
+</resources>
