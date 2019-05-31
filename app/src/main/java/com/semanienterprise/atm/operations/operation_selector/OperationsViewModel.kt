@@ -3,8 +3,9 @@ package com.semanienterprise.atm.operations.operation_selector
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.semanienterprise.atm.network.AtmCard
 
-class OperationsViewModel : ViewModel() {
+class OperationsViewModel(val atmCard: AtmCard) : ViewModel() {
     private val _navigateToAccountSelection = MutableLiveData<Boolean>()
     val navigateToAccountSelection: LiveData<Boolean>
         get() = _navigateToAccountSelection

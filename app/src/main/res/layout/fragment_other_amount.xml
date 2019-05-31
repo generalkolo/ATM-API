@@ -39,6 +39,7 @@
             app:passwordToggleEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/debit_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />

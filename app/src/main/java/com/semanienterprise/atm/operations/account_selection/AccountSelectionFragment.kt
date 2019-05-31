@@ -59,7 +59,11 @@ class AccountSelectionFragment : Fragment() {
         viewModel.navigateToBalanceFragment.observe(this, Observer { toNavigate ->
             if (toNavigate) {
                 this.findNavController()
-                    .navigate(AccountSelectionFragmentDirections.actionAccountSelectionFragmentToBalanceFragment())
+                    .navigate(
+                        AccountSelectionFragmentDirections.actionAccountSelectionFragmentToBalanceFragment(
+                            selectedAtm
+                        )
+                    )
                 viewModel.navigateToBalanceFragmentComplete()
             }
         })
@@ -68,7 +72,11 @@ class AccountSelectionFragment : Fragment() {
         viewModel.navigateToWithdrawalFragment.observe(this, Observer { toNavigate ->
             if (toNavigate) {
                 this.findNavController()
-                    .navigate(AccountSelectionFragmentDirections.actionAccountSelectionFragmentToDepositAmountFragment())
+                    .navigate(
+                        AccountSelectionFragmentDirections.actionAccountSelectionFragmentToDepositAmountFragment(
+                            selectedAtm
+                        )
+                    )
                 viewModel.navigateToWithdrawalComplete()
             }
         })

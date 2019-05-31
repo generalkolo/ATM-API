@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="atmCard"
+            type="com.semanienterprise.atm.network.AtmCard" />
+
+        <variable
+            name="viewModel"
+            type="com.semanienterprise.atm.balance.BalanceFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,28 +20,41 @@
         tools:context=".balance.BalanceFragment">
 
         <TextView
-            android:id="@+id/hint_text"
+            android:id="@+id/account_balance_text"
             style="@style/hint_text_style"
-            android:layout_marginTop="120dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/account_balance_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="120dp"
             android:layout_marginEnd="8dp"
-            android:text="Balance N32,000.000"
+            android:text="@{@string/account_balance(atmCard.accountBalance)}"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hint_text" />
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/button"
+            style="@style/cancel_button_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:onClick="@{() -> viewModel.navigateBackToCardFragment()}"
+            android:text="@android:string/cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_balance_text" />
+
+        <Button
+            style="@style/enter_button_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{() -> viewModel.navigateToPinFragment()}"
+            android:text="@string/another_transaction_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

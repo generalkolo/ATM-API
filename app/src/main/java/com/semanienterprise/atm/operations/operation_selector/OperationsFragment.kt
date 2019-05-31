@@ -24,14 +24,16 @@ class OperationsFragment : Fragment() {
         val WITHDRAWAL = "Withdrawal"
     }
 
-    //get the viewModel
-    private val viewModel: OperationsViewModel by lazy {
-        ViewModelProviders.of(this).get(OperationsViewModel::class.java)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val binding = FragmentOperationsBinding.inflate(inflater)
+
+        //get atm card received and pass to viewModelFactory
+        val atmCardReceived = OperationsFragmentArgs.fromBundle(arguments!!).atmCard
+        //get viewModel and viewModelFactory
+        val viewModelFactory = OperationsViewModelFactory(atmCardReceived)
+        val viewModel = ViewModelProviders.of(this, viewModelFactory).get(OperationsViewModel::class.java)
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -52,8 +54,13 @@ class OperationsFragment : Fragment() {
         //navigate to account selection for withdrawal
         viewModel.navigateToAccountSelection.observe(this, Observer {
             if (it) {
-//                this.findNavController()
-//                    .navigate(OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(WITHDRAWAL))
+                this.findNavController()
+                    .navigate(
+                        OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(
+                            WITHDRAWAL,
+                            atmCardReceived
+                        )
+                    )
                 viewModel.navigateToAccountSelectionComplete()
             }
         })
@@ -61,12 +68,12 @@ class OperationsFragment : Fragment() {
         //navigate to the account select for balance enquiry
         viewModel.navigateToBalanceFragment.observe(this, Observer {
             if (it) {
-//                this.findNavController()
-//                    .navigate(
-//                        OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(
-//                            BALANCE_ENQUIRY
-//                        )
-//                    )
+                this.findNavController()
+                    .navigate(
+                        OperationsFragmentDirections.actionOperationsFragmentToAccountSelectionFragment(
+                            BALANCE_ENQUIRY, atmCardReceived
+                        )
+                    )
                 viewModel.navigateToBalanceFragmentComplete()
             }
         })

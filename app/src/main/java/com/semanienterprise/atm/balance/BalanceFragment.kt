@@ -6,26 +6,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.semanienterprise.atm.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.semanienterprise.atm.databinding.FragmentBalanceBinding
 
 /**
  * A simple [Fragment] subclass.
- *
  */
 class BalanceFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_balance, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //get binding element
+        val binding = FragmentBalanceBinding.inflate(inflater)
+
+        //get viewModel
+        val viewModel = ViewModelProviders.of(this).get(BalanceFragmentViewModel::class.java)
+        binding.viewModel = viewModel
+
+        //get atmCard
+        val atmCard = BalanceFragmentArgs.fromBundle(arguments!!).atmCard
+        binding.atmCard = atmCard
+
+        viewModel.navigateBackToCardFragment.observe(this, Observer { isNavigate ->
+            if (isNavigate) {
+                this.findNavController().navigate(BalanceFragmentDirections.actionBalanceFragmentToCardFragment())
+                viewModel.navigateBackToCardFragmentCompleted()
+            }
+        })
+
+        viewModel.navigateBackToPinFragment.observe(this, Observer { isNavigate ->
+            if (isNavigate) {
+                this.findNavController().navigate(BalanceFragmentDirections.actionBalanceFragmentToCardPinReal(atmCard))
+                viewModel.navigateToPinFragmentCompleted()
+            }
+        })
+
+        return binding.root
     }
-
-
 }

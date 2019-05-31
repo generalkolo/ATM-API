@@ -31,6 +31,9 @@ class WithdrawalAmountFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentDepositAmountBinding.inflate(inflater)
 
+        //get sent atm card
+        val atmCard = WithdrawalAmountFragmentArgs.fromBundle(arguments!!).atmCard
+
         //set the text of the buttons
         binding.fiveHundredNotes.default_btn.text = getString(R.string.five_hundred_text)
         binding.oneThousandNotes.default_btn.text = getString(R.string.one_thousand_text)
@@ -62,7 +65,11 @@ class WithdrawalAmountFragment : Fragment() {
         viewModel.navigateToOthers.observe(this, Observer { toNavigate ->
             if (toNavigate) {
                 this.findNavController()
-                    .navigate(WithdrawalAmountFragmentDirections.actionDepositAmountFragmentToOtherAmountFragment())
+                    .navigate(
+                        WithdrawalAmountFragmentDirections.actionDepositAmountFragmentToOtherAmountFragment(
+                            atmCard
+                        )
+                    )
                 viewModel.navigateToOthersFragmentCompleted()
             }
         })
@@ -78,7 +85,12 @@ class WithdrawalAmountFragment : Fragment() {
         viewModel.navigateToDispenseFragment.observe(this, Observer { debitAmount ->
             debitAmount?.let {
                 this.findNavController()
-                    .navigate(WithdrawalAmountFragmentDirections.actionDepositAmountFragmentToReceiptFragment(it))
+                    .navigate(
+                        WithdrawalAmountFragmentDirections.actionDepositAmountFragmentToReceiptFragment(
+                            it,
+                            atmCard
+                        )
+                    )
                 viewModel.navigateToDispenseFragmentCompleted()
             }
         })

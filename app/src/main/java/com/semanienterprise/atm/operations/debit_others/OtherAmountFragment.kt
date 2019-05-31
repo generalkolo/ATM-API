@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -25,6 +26,8 @@ class OtherAmountFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentOtherAmountBinding.inflate(inflater)
 
+        //get arguments
+        val atmCard = OtherAmountFragmentArgs.fromBundle(arguments!!).atmCard
         binding.viewModel = viewModel
 
         //navigate to card fragment on click of cancel button
@@ -39,12 +42,39 @@ class OtherAmountFragment : Fragment() {
         //navigate to dispense fragment on click of enter button
         viewModel.navigateToDispenseFragment.observe(this, Observer { toNavigate ->
             if (toNavigate) {
-                //TODO:: Work on debit amount here
                 this.findNavController()
-                    .navigate(OtherAmountFragmentDirections.actionOtherAmountFragmentToReceiptFragment(""))
+                    .navigate(
+                        OtherAmountFragmentDirections.actionOtherAmountFragmentToReceiptFragment(
+                            viewModel.userEnteredAmount!!,
+                            atmCard
+                        )
+                    )
                 viewModel.showDispenseFragmentCompleted()
             }
         })
+
+        viewModel.getEnteredAmount.observe(this, Observer { getAmount ->
+            if (getAmount) {
+                viewModel.userEnteredAmount = binding.debitAmount.text.toString()
+                viewModel.enteredAmountGotten()
+            }
+        })
+
+        viewModel.showEmptyAmountToast.observe(this, Observer { showToast ->
+            if (showToast) {
+                Toast.makeText(activity, "Debit amount cannot be empty", Toast.LENGTH_SHORT).show()
+                viewModel.emptyAmountToastShown()
+            }
+        })
+
+        viewModel.showWrongMultiplesToast.observe(this, Observer { showToast ->
+            if (showToast) {
+                Toast.makeText(activity, "Debit amount should only be in multiple of 500 or 1000", Toast.LENGTH_SHORT)
+                    .show()
+                viewModel.wrongMultipleAmountToastShown()
+            }
+        })
+
 
         return binding.root
     }

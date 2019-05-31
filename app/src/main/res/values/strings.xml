@@ -23,4 +23,7 @@
     <string name="five_thousand_text">N5,000.00</string>
     <string name="others_text">Others</string>
     <string name="enter_debit_amount_text">Enter Debit Amount</string>
+    <string name="transaction_receipt_text">Transaction Receipt</string>
+    <string name="another_transaction_text">Another Transaction</string>
+    <string name="account_balance">Your Account balance is N%d</string>
 </resources>

@@ -89,6 +89,9 @@
             android:id="@+id/action_depositAmountFragment_to_cardFragment"
             app:destination="@id/cardFragment"
             app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
     </fragment>
     <fragment
         android:id="@+id/otherAmountFragment"
@@ -103,6 +106,9 @@
             android:id="@+id/action_otherAmountFragment_to_receiptFragment"
             app:destination="@id/receiptFragment"
             app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
     </fragment>
     <fragment
         android:id="@+id/receiptFragment"
@@ -120,23 +126,25 @@
             android:id="@+id/action_receiptFragment_to_cardPin"
             app:destination="@id/cardPin"
             app:popUpTo="@id/cardPin" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
     </fragment>
     <fragment
         android:id="@+id/balanceFragment"
         android:name="com.semanienterprise.atm.balance.BalanceFragment"
         android:label="fragment_balance"
         tools:layout="@layout/fragment_balance">
-        <action
-            android:id="@+id/action_balanceFragment_to_receiptFragment"
-            app:destination="@id/receiptFragment"
-            app:popUpTo="@id/cardFragment" />
+        <argument
+            android:name="atmCard"
+            app:argType="com.semanienterprise.atm.network.AtmCard" />
         <action
             android:id="@+id/action_balanceFragment_to_cardFragment"
             app:destination="@id/cardFragment"
-            app:popUpTo="@id/cardFragment" />
+            app:popUpTo="@+id/cardFragment" />
         <action
-            android:id="@+id/action_balanceFragment_to_cardPin"
+            android:id="@+id/action_balanceFragment_to_cardPin_real"
             app:destination="@id/cardPin"
-            app:popUpTo="@id/cardPin" />
+            app:popUpTo="@+id/cardFragment" />
     </fragment>
 </navigation>

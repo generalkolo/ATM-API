@@ -21,8 +21,8 @@ class CardPin : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentCardPinBinding = FragmentCardPinBinding.inflate(inflater)
 
+        //get atm card sent
         val atmCardReceived = CardPinArgs.fromBundle(arguments!!).atmCard
-
         //get viewModel
         val viewModelFactory = CardPinViewModelFactory(atmCardReceived)
         val viewModel = ViewModelProviders.of(this, viewModelFactory).get(CardPinViewModel::class.java)
